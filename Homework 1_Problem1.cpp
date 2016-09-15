@@ -12,10 +12,6 @@ int main()
     bubbleSort(A, 11);
     resetA(A, 11);
     selectionSort(A,11);
-        for(int i=0; i<11; i++)
-        {
-            std::cout<<A[i]<<" ";
-        }
 
 }
 void bubbleSort(int array[], int size)
@@ -41,6 +37,7 @@ void bubbleSort(int array[], int size)
             std::cout<<"\n";
         }
     } while (swap);
+    std::cout<<"Sorted!"<<"\n";
 }
 
 void selectionSort(int array[], int size)
@@ -67,6 +64,7 @@ void selectionSort(int array[], int size)
         array[minIndex] = array[startScan];
         array[startScan] = minValue;
     }
+    std::cout<<"Sorted!"<<"\n";
 }
 void resetA(int array[], int size)
 {
