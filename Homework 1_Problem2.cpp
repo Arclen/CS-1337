@@ -42,11 +42,12 @@ void bubbleSort(int array[], int size)
             swap = true;
             moves++;
             }
-            for(int i=0; i<size; i++)
+            /*for(int i=0; i<size; i++)
             {
                 std::cout<<array[i]<<" ";
             }
             std::cout<<"\n";
+            */
             comp++;
         }
     } while (swap);
