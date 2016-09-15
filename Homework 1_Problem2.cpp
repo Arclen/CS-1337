@@ -36,24 +36,21 @@ void bubbleSort(int array[], int size)
         {
             if (array[count] > array[count + 1])
             {
-            temp = array[count];
-            array[count] = array[count + 1];
-            array[count + 1] = temp;
-            swap = true;
-            moves++;
+                temp = array[count];
+                array[count] = array[count + 1];
+                array[count + 1] = temp;
+                swap = true;
+                moves++;
             }
-            /*
-            for(int i=0; i<size; i++)
-            {
-                std::cout<<array[i]<<" ";
-            }
-            std::cout<<"\n";
-            */
             comp++;
         }
     } while (swap);
     t = clock() - t;
     std::cout<<"Sorted! \nNumber of comparisons: "<<comp<<" \nNumber of swaps: "<<moves<<" \nTime elapsed: "<<t<<" milliseconds.\n";
+    for(int i=0; i<size; i++)
+            {
+                std::cout<<array[i]<<" ";
+            }
 }
 void createRandomArray(int array[], int size)
 {
