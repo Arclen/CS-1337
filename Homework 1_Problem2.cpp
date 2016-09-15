@@ -19,6 +19,14 @@ void bubbleSort(int array[], int size)
 {
     bool swap;
     int temp;
+    int comp = 0;
+    int moves = 0;
+    std::cout<<"Initial array: ";
+    for(int i=0; i<size; i++)
+            {
+                std::cout<<array[i]<<" ";
+            }
+    std::cout<<"\n";
     do
     {
         swap = false;
@@ -30,15 +38,17 @@ void bubbleSort(int array[], int size)
             array[count] = array[count + 1];
             array[count + 1] = temp;
             swap = true;
+            moves++;
             }
             for(int i=0; i<size; i++)
             {
                 std::cout<<array[i]<<" ";
             }
             std::cout<<"\n";
+            comp++;
         }
     } while (swap);
-    std::cout<<"Sorted!"<<"\n";
+    std::cout<<"Sorted! Number of comparisons: "<<comp<<" Number of swaps: "<<moves<<"\n";
 }
 void createRandomArray(int array[], int size)
 {
