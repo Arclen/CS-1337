@@ -28,6 +28,7 @@ void bubbleSort(int array[], int size)
                 std::cout<<array[i]<<" ";
             }
     std::cout<<"\n";
+    clock_t t = clock();
     do
     {
         swap = false;
@@ -49,7 +50,8 @@ void bubbleSort(int array[], int size)
             comp++;
         }
     } while (swap);
-    std::cout<<"Sorted! Number of comparisons: "<<comp<<" Number of swaps: "<<moves<<"\n";
+    t = clock() - t;
+    std::cout<<"Sorted! \nNumber of comparisons: "<<comp<<" \nNumber of swaps: "<<moves<<" \nTime elapsed: "<<t<<" milliseconds.\n";
 }
 void createRandomArray(int array[], int size)
 {
