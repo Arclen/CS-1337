@@ -1,6 +1,7 @@
 //Jacob Liou CS 1337
 #include <iostream>
 #include <string>
+#include <ctime>
 using namespace std;
 
 void bubbleSort(int [], int);
@@ -8,11 +9,11 @@ void createRandomArray(int[], int);
 int main()
 {
   int size;
-  std::cout<<"Please enter the size of the array";
+  std::cout<<"Please enter the size of the array "<<"\n";
   std::cin >> size;
   int rand[size];
   createRandomArray(rand, size);
-  
+  bubbleSort(rand, size);
 }
 void bubbleSort(int array[], int size)
 {
@@ -39,7 +40,11 @@ void bubbleSort(int array[], int size)
     } while (swap);
     std::cout<<"Sorted!"<<"\n";
 }
-void createRandomArray(int array[], int size);
+void createRandomArray(int array[], int size)
 {
-  
+  for(int i=0; i<size; i++)
+  {
+    std::srand(i);
+    array[i] = rand() % 200 - 100;
+  }
 }
