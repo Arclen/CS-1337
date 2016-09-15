@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <stdlib.h>
 using namespace std;
 
 void bubbleSort(int [], int);
@@ -54,7 +55,7 @@ void createRandomArray(int array[], int size)
 {
   for(int i=0; i<size; i++)
   {
-    std::srand(time(NULL)+i);
+    srand(time(NULL)*2*(-1)^(i));
     array[i] = rand() % 200 - 100;
   }
 }
