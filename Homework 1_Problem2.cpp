@@ -44,7 +44,7 @@ void createRandomArray(int array[], int size)
 {
   for(int i=0; i<size; i++)
   {
-    std::srand(i);
+    std::srand(time(NULL)+i);
     array[i] = rand() % 200 - 100;
   }
 }
