@@ -73,7 +73,6 @@ void resetA(int array[], int size)
     int temp[] = {25,9,3,7,11,0,2,20,28,5,16};
     for(int i=0; i<size; i++)
     {
-
         array[i] = temp[i];
     }
 }
