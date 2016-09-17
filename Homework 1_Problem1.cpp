@@ -6,13 +6,13 @@ using namespace std;
 void bubbleSort(int [], int);
 void selectionSort(int[], int);
 void resetA(int [], int);
+
 int main()
 {
     int A[] = {25,9,3,7,11,0,2,20,28,5,16};
     bubbleSort(A, 11);
     resetA(A, 11);
     selectionSort(A,11);
-
 }
 void bubbleSort(int array[], int size)
 {
@@ -30,6 +30,7 @@ void bubbleSort(int array[], int size)
             array[count + 1] = temp;
             swap = true;
             }
+//this loop outputs the array at the end of each traverse
             for(int i=0; i<size; i++)
             {
                 std::cout<<array[i]<<" ";
@@ -54,6 +55,7 @@ void selectionSort(int array[], int size)
             minValue = array[index];
             minIndex = index;
             }
+//this loop outputs the array at the end of each traverse
             for(int i=0; i<size; i++)
             {
                 std::cout<<array[i]<<" ";
@@ -66,6 +68,7 @@ void selectionSort(int array[], int size)
     }
     std::cout<<"Sorted!"<<"\n";
 }
+//This function resets the array into the original test array
 void resetA(int array[], int size)
 {
     int temp[] = {25,9,3,7,11,0,2,20,28,5,16};
