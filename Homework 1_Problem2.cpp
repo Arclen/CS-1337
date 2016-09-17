@@ -7,6 +7,7 @@ using namespace std;
 
 void bubbleSort(int [], int);
 void createRandomArray(int[], int);
+
 int main()
 {
   int size;
@@ -54,9 +55,13 @@ void bubbleSort(int array[], int size)
 }
 void createRandomArray(int array[], int size)
 {
+//this loop assigns a random value to each spot in the array
   for(int i=0; i<size; i++)
   {
+//the purpose of using both null time and the alternating signs is to
+//ensure as much randomness as possible, as srand is not truly random
     srand(time(NULL)*2*(-1)^(i));
+//this ensures that all integers from -100 to 99 are possibilities
     array[i] = rand() % 200 - 100;
   }
 }
