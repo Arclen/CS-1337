@@ -19,6 +19,12 @@ void bubbleSort(int array[], int size)
     std::cout<<"Bubble Sort: \n";
     bool swap;
     int temp;
+    std::cout<<"Initial array: ";
+    for(int i=0; i<size; i++)
+            {
+                std::cout<<array[i]<<" ";
+            }
+    std::cout<<"\n";
     do
     {
         swap = false;
@@ -50,15 +56,24 @@ void bubbleSort(int array[], int size)
 void selectionSort(int array[], int size)
 {
     std::cout<<"Selection Sort: \n";
-    int startScan, minIndex, minValue;
+    bool swap;
+    int startScan, minIndex, minValue, temp;
+    std::cout<<"Initial array: ";
+    for(int i=0; i<size; i++)
+            {
+                std::cout<<array[i]<<" ";
+            }
+    std::cout<<"\n";
     for(startScan = 0; startScan < (size-1); startScan++)
     {
         minIndex = startScan;
         minValue = array[startScan];
         for(int index = startScan + 1; index < size; index++)
         {
+            swap = false;
             if (array[index] < minValue)
             {
+            temp=minValue;
             minValue = array[index];
             minIndex = index;
             }
@@ -72,6 +87,13 @@ void selectionSort(int array[], int size)
 
         array[minIndex] = array[startScan];
         array[startScan] = minValue;
+        swap = true;
+//this if statement outputs every swap that occurs
+        if(swap)
+            {
+                std::cout<<"Numbers swapped: "<<array[startScan]<<" with "<<array[minIndex]<<"\n";
+            }
+
     }
     std::cout<<"Sorted!"<<"\n";
 }
