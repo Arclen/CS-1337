@@ -89,7 +89,7 @@ void selectionSort(int array[], int size)
         array[startScan] = minValue;
         swap = true;
 //this if statement outputs every swap that occurs
-        if(swap)
+        if(swap && array[startScan] != array[minIndex])
             {
                 std::cout<<"Numbers swapped: "<<array[startScan]<<" with "<<array[minIndex]<<"\n";
             }
