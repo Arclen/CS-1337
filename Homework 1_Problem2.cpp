@@ -46,6 +46,7 @@ void bubbleSort(int array[], int size)
             comp++;
         }
     } while (swap);
+//This gives the time elapsed
     t = clock() - t;
     std::cout<<"Sorted! \nNumber of comparisons: "<<comp<<" \nNumber of swaps: "<<moves<<" \nTime elapsed: "<<t<<" milliseconds.\n";
     for(int i=0; i<size; i++)
