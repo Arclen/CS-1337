@@ -15,7 +15,7 @@ int main()
     selectionSort(A,11);
 }
 void bubbleSort(int array[], int size)
-{   
+{
     std::cout<<"Bubble Sort: \n";
     bool swap;
     int temp;
@@ -37,6 +37,11 @@ void bubbleSort(int array[], int size)
                 std::cout<<array[i]<<" ";
             }
             std::cout<<"\n";
+//this if statement outputs every swap that occurs
+            if(swap)
+            {
+                std::cout<<"Numbers swapped: "<<array[count+1]<<" with "<<array[count]<<"\n";
+            }
         }
     } while (swap);
     std::cout<<"Sorted!"<<"\n";
