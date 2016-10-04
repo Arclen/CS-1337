@@ -6,7 +6,7 @@
 using namespace std;
 struct Candidate{
     string name;
-    char gender;
+    string gender;
     double height;
     double weight;
 };
@@ -17,11 +17,12 @@ int main() {
 	int looper = 0;
 	Candidate c[40];
 	file.open("candidatedata.txt");
-
+    getline(file,input);
         while(file)
         {
             getline(file,input,',');
-            /*
+            std::cout<<input<<std::endl;
+
             switch(counter)
             {
                 case 1:
@@ -30,7 +31,7 @@ int main() {
                     break;
                 case 2:
                     counter++;
-                    //c[looper].gender= atoc(input);
+                    //c[looper].gender= input;
                     break;
                 case 3:
                     counter++;
@@ -42,16 +43,6 @@ int main() {
                     break;
             }
             looper++;
-            std::cout<<input<<std::endl;
-            */
-            c[looper].name = input;
-            looper++;
         }
-        for(int i=0; i<40; i++)
-        {
-            std::cout<<c[i].name;
-        }
-
         file.close();
-
 }
