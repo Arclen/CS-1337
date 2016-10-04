@@ -5,18 +5,24 @@ void switchEnds(int *, int);
 void switcheroo(int *, int *);
 int main()
 {
-  int array[] = {1,2,3,4,5};
-  int size = 5;
-  switchEnds(array,5);
-  std::cout<<array[0]<<" "<<array[4];
+  int array[] = {1,2,3,4,5,6,7,8};
+  for(int i=0; i<8; i++)
+  {
+      std::cout<<array[i]<<" ";
+  }
+  int size = 8;
+  switchEnds(array,8);
+  for(int i=0; i<8; i++)
+  {
+      std::cout<<array[i]<<" ";
+  }
 }
 void switchEnds(int *array, int size)
 {
-    switcheroo(array, array+size-1);
-}
-void switcheroo(int *x, int *y)
-{
+    int *x = array;
+    int *y = array+size-1;
     int temp = *x;
     *x = *y;
     *y = temp;
+    std::cout<<"\nSwitched!\n";
 }
