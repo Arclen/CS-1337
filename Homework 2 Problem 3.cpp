@@ -55,4 +55,16 @@ int main() {
         std::cout<<"Number of female and male candidates respectively: "<<females<<" "<<20-females;
         std::cout<<"\nPercentage of female and male candidates respectively: "<<fper<<" "<<(1-fper);
 
+        float mavgH, favgH = 0.0;
+        for(int i=0; i<20; i++)
+        {
+            if(c[i].gender=='F')
+                favgH += c[i].height;
+            else mavgH += c[i].height;
+        }
+        favgH /= 10;
+        mavgH /= 10;
+        std::cout<<"\nFemale average height: "<<favgH;
+        std::cout<<"\nMale average height: "<<mavgH;
+
 }
