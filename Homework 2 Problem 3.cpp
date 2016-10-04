@@ -12,6 +12,7 @@ struct Candidate{
     double height;
     double weight;
 };
+
 int main() {
 	fstream file;
 	string input;
@@ -20,25 +21,26 @@ int main() {
 	Candidate c[20];
 	char temp[100];
 	file.open("candidatedata.txt");
-        while(!file.eof())
-        {
-            getline(file,input,',');
-            c[looper].name=input;
 
-            getline(file,input,',');
-            strcpy(temp,input.c_str());
-            c[looper].gender=temp[0];
+    while(!file.eof())
+    {
+        getline(file,input,',');
+        c[looper].name=input;
 
-            getline(file,input,',');
-            strcpy(temp,input.c_str());
-            c[looper].height=atof(temp);
+        getline(file,input,',');
+        strcpy(temp,input.c_str());
+        c[looper].gender=temp[0];
 
-            getline(file,input);
-            strcpy(temp,input.c_str());
-            c[looper].weight=atof(temp);
+        getline(file,input,',');
+        strcpy(temp,input.c_str());
+        c[looper].height=atof(temp);
 
-            looper++;
-        }
+        getline(file,input);
+        strcpy(temp,input.c_str());
+        c[looper].weight=atof(temp);
+
+        looper++;
+    }
         file.close();
 
         int females =0;
