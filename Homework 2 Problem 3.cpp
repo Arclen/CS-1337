@@ -40,10 +40,7 @@ int main() {
             looper++;
         }
         file.close();
-        /*for(int i=0; i<20; i++)
-        {
-            std::cout<<"\n"<<c[i].name<<" "<<c[i].gender<<" "<<c[i].height<<" "<<c[i].weight<<"\n";
-        }*/
+
         int females =0;
         float fper;
         for(int i=0; i<20; i++)
