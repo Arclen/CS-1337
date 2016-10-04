@@ -59,12 +59,54 @@ int main() {
         for(int i=0; i<20; i++)
         {
             if(c[i].gender=='F')
-                favgH += c[i].height;
-            else mavgH += c[i].height;
+                favgH += c[i].height/10;
+            else mavgH += c[i].height/10;
         }
-        favgH /= 10;
-        mavgH /= 10;
         std::cout<<"\nFemale average height: "<<favgH;
         std::cout<<"\nMale average height: "<<mavgH;
 
+        float avgW = 0.0;
+        for(int i=0; i<20; i++)
+        {
+            avgW += c[i].weight/20;
+        }
+        std::cout<<"\nOverall average weight: "<<avgW;
+
+        float minW = 300.0;
+        float maxW = 0.0;
+        int minloc, maxloc;
+        for(int i=0; i<20; i++)
+        {
+            if(c[i].weight < minW)
+            {
+                minW = c[i].weight;
+                minloc = i;
+            }
+            if(c[i].weight > maxW)
+            {
+                maxW = c[i].weight;
+                maxloc = i;
+            }
+        }
+        std::cout<<"\nCandidate with least weight: "<<c[minloc].name<<" "<<c[minloc].gender;
+        std::cout<<"\nCandidate with most weight: "<<c[maxloc].name<<" "<<c[maxloc].gender;
+
+        float shortest = 100.0;
+        float tallest = 0.0;
+        int shortloc, tallestloc;
+        for(int i=0; i<20; i++)
+        {
+            if(c[i].height < shortest)
+            {
+                shortest= c[i].height;
+                shortloc = i;
+            }
+            if(c[i].height > tallest)
+            {
+                tallest = c[i].height;
+                tallestloc = i;
+            }
+        }
+        std::cout<<"\nShortest candidate: "<<c[shortloc].name<<" "<<c[shortloc].gender;
+        std::cout<<"\nTallest candidate: "<<c[tallestloc].name<<" "<<c[tallestloc].gender;
 }
