@@ -1,20 +1,25 @@
 // Jacob Liou CS 1337
 #include <iostream>
 #include <string>
+using namespace std;
+
 void switchEnds(int *, int);
 void switcheroo(int *, int *);
+
 int main()
 {
   int array[] = {1,2,3,4,5,6,7,8};
-  for(int i=0; i<8; i++)
-  {
-      std::cout<<array[i]<<" ";
-  }
   int size = 8;
-  switchEnds(array,8);
-  for(int i=0; i<8; i++)
+  for(int i=0; i<size; i++)
   {
-      std::cout<<array[i]<<" ";
+      cout<<array[i]<<" ";
+  }
+
+  switchEnds(array,size);
+
+  for(int i=0; i<size; i++)
+  {
+      cout<<array[i]<<" ";
   }
 }
 void switchEnds(int *array, int size)
@@ -24,5 +29,5 @@ void switchEnds(int *array, int size)
     int temp = *x;
     *x = *y;
     *y = temp;
-    std::cout<<"\nSwitched!\n";
+    cout<<"\nSwitched!\n";
 }
