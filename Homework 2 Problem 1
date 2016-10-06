@@ -1,6 +1,9 @@
-A) Variable x is an int, not a pointer, so it cannot be assigned a memory location.
+Problem 1.
+A) Variable x is an int, not a pointer, so it cannot be set to a memory location.
 B) The statement should be 'ptr = &x;' because ptr has already been initialized as a pointer, having the '*' again is incorrect.
 C) The statement should be 'cout << *(numbers + 3) << endl;' because otherwise it would print 13, since *numbers automatically returns the first value in the array, and the +3 would just add 3 to that value.
 F) The statement should be '*iptr *= 2;' because we are changing the value the pointer points to, not the pointer itself.
 I) The statement should be 'val *= 2' because val is not a pointer, so it can be directly manipulated.
 M) This would return the address of wholeNum rather than the value of wholeNum.
+
+
