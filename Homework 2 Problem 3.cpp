@@ -13,6 +13,8 @@ struct Candidate{
     double height;
     double weight;
 };
+
+//I decided to make the computations into functions so main() wouldn't be crowded
 void getPercentages(Candidate[], int);
 void getAvgHeight(Candidate[], int);
 void getAvgWeight(Candidate[], int);
@@ -24,32 +26,37 @@ int main() {
 	string input;
 	int counter = 1;
 	int looper = 0;
+	//I use a pointer so I can delete it later and free up memory
 	Candidate *c;
 	c = new Candidate[20];
 	char temp[10];
 
 	file.open("candidatedata.txt");
-    getline(file,input);
+    
+	getline(file,input);
 
-    while(!file.eof())
-    {
-        getline(file,input,',');
-        c[looper].name=input;
+	while(!file.eof())
+	{
+		getline(file,input,',');
+		c[looper].name=input;
 
-        getline(file,input,',');
-        strcpy(temp,input.c_str());
-        c[looper].gender=temp[0];
+		getline(file,input,',');
+		//I use strcpy 
+		strcpy(temp,input.c_str());
+		c[looper].gender=temp[0];
 
-        getline(file,input,',');
-        strcpy(temp,input.c_str());
-        c[looper].height=atof(temp);
+		getline(file,input,',');
+		//here I use strcpy because atof() only works on C-strings
+		strcpy(temp,input.c_str());
+		c[looper].height=atof(temp);
 
-        getline(file,input);
-        strcpy(temp,input.c_str());
-        c[looper].weight=atof(temp);
+		//I don't use the comma delimiter here because if I did, it would read into the name on the next line as well
+		getline(file,input);
+		strcpy(temp,input.c_str());
+		c[looper].weight=atof(temp);
 
-        looper++;
-    }
+		looper++;
+	}
         file.close();
 
         getPercentages(c, 20);
@@ -58,6 +65,7 @@ int main() {
         getLightAndHeavy(c, 20);
         getShortAndTall(c, 20);
 
+	//Releasing memory
         delete []c;
 }
 
