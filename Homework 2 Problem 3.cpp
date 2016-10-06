@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 using namespace std;
+
 struct Candidate{
     string name;
     char gender;
@@ -19,9 +20,9 @@ int main() {
 	int counter = 1;
 	int looper = 0;
 	Candidate c[20];
-	char temp[100];
+	char temp[10];
 	file.open("candidatedata.txt");
-
+    getline(file,input);
     while(!file.eof())
     {
         getline(file,input,',');
@@ -51,8 +52,8 @@ int main() {
                 females++;
         }
         fper = (float)females/20;
-        std::cout<<"Number of female and male candidates respectively: "<<females<<" "<<20-females;
-        std::cout<<"\nPercentage of female and male candidates respectively: "<<fper<<" "<<(1-fper);
+        cout<<"Number of female and male candidates respectively: "<<females<<" "<<20-females;
+        cout<<"\nPercentage of female and male candidates respectively: "<<fper<<" "<<(1-fper);
 
         float mavgH, favgH = 0.0;
         for(int i=0; i<20; i++)
@@ -61,15 +62,15 @@ int main() {
                 favgH += c[i].height/10;
             else mavgH += c[i].height/10;
         }
-        std::cout<<"\nFemale average height: "<<favgH;
-        std::cout<<"\nMale average height: "<<mavgH;
+        cout<<"\nFemale average height: "<<favgH;
+        cout<<"\nMale average height: "<<mavgH;
 
         float avgW = 0.0;
         for(int i=0; i<20; i++)
         {
             avgW += c[i].weight/20;
         }
-        std::cout<<"\nOverall average weight: "<<avgW;
+        cout<<"\nOverall average weight: "<<avgW;
 
         float minW = 300.0;
         float maxW = 0.0;
@@ -87,8 +88,8 @@ int main() {
                 maxloc = i;
             }
         }
-        std::cout<<"\nCandidate with least weight: "<<c[minloc].name<<" "<<c[minloc].gender;
-        std::cout<<"\nCandidate with most weight: "<<c[maxloc].name<<" "<<c[maxloc].gender;
+        cout<<"\nCandidate with least weight: "<<c[minloc].name<<" "<<c[minloc].gender;
+        cout<<"\nCandidate with most weight: "<<c[maxloc].name<<" "<<c[maxloc].gender;
 
         float shortest = 100.0;
         float tallest = 0.0;
@@ -106,6 +107,6 @@ int main() {
                 tallestloc = i;
             }
         }
-        std::cout<<"\nShortest candidate: "<<c[shortloc].name<<" "<<c[shortloc].gender;
-        std::cout<<"\nTallest candidate: "<<c[tallestloc].name<<" "<<c[tallestloc].gender;
+        cout<<"\nShortest candidate: "<<c[shortloc].name<<" "<<c[shortloc].gender;
+        cout<<"\nTallest candidate: "<<c[tallestloc].name<<" "<<c[tallestloc].gender;
 }
