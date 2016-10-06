@@ -13,16 +13,24 @@ struct Candidate{
     double height;
     double weight;
 };
+void getPercentages(Candidate[], int);
+void getAvgHeight(Candidate[], int);
+void getAvgWeight(Candidate[], int);
+void getLightAndHeavy(Candidate[], int);
+void getShortAndTall(Candidate[], int);
 
 int main() {
 	fstream file;
 	string input;
 	int counter = 1;
 	int looper = 0;
-	Candidate c[20];
+	Candidate *c;
+	c = new Candidate[20];
 	char temp[10];
+
 	file.open("candidatedata.txt");
     getline(file,input);
+
     while(!file.eof())
     {
         getline(file,input,',');
@@ -44,9 +52,20 @@ int main() {
     }
         file.close();
 
-        int females =0;
+        getPercentages(c, 20);
+        getAvgHeight(c, 20);
+        getAvgWeight(c, 20);
+        getLightAndHeavy(c, 20);
+        getShortAndTall(c, 20);
+
+        delete []c;
+}
+
+void getPercentages(Candidate c[], int size)
+{
+    int females =0;
         float fper;
-        for(int i=0; i<20; i++)
+        for(int i=0; i<size; i++)
         {
             if(c[i].gender=='F')
                 females++;
@@ -54,28 +73,37 @@ int main() {
         fper = (float)females/20;
         cout<<"Number of female and male candidates respectively: "<<females<<" "<<20-females;
         cout<<"\nPercentage of female and male candidates respectively: "<<fper<<" "<<(1-fper);
+}
 
-        float mavgH, favgH = 0.0;
-        for(int i=0; i<20; i++)
+void getAvgHeight(Candidate c[], int size)
+{
+    float mavgH, favgH = 0.0;
+        for(int i=0; i<size; i++)
         {
             if(c[i].gender=='F')
-                favgH += c[i].height/10;
-            else mavgH += c[i].height/10;
+                favgH += c[i].height/(size/2);
+            else mavgH += c[i].height/(size/2);
         }
         cout<<"\nFemale average height: "<<favgH;
         cout<<"\nMale average height: "<<mavgH;
+}
 
-        float avgW = 0.0;
-        for(int i=0; i<20; i++)
+void getAvgWeight(Candidate c[], int size)
+{
+    float avgW = 0.0;
+        for(int i=0; i<size; i++)
         {
-            avgW += c[i].weight/20;
+            avgW += c[i].weight/size;
         }
         cout<<"\nOverall average weight: "<<avgW;
+}
 
-        float minW = 300.0;
+void getLightAndHeavy(Candidate c[], int size)
+{
+    float minW = 300.0;
         float maxW = 0.0;
         int minloc, maxloc;
-        for(int i=0; i<20; i++)
+        for(int i=0; i<size; i++)
         {
             if(c[i].weight < minW)
             {
@@ -90,11 +118,14 @@ int main() {
         }
         cout<<"\nCandidate with least weight: "<<c[minloc].name<<" "<<c[minloc].gender;
         cout<<"\nCandidate with most weight: "<<c[maxloc].name<<" "<<c[maxloc].gender;
+}
 
-        float shortest = 100.0;
+void getShortAndTall(Candidate c[], int size)
+{
+    float shortest = 100.0;
         float tallest = 0.0;
         int shortloc, tallestloc;
-        for(int i=0; i<20; i++)
+        for(int i=0; i<size; i++)
         {
             if(c[i].height < shortest)
             {
