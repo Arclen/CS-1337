@@ -4,7 +4,6 @@
 using namespace std;
 
 void switchEnds(int *, int);
-void switcheroo(int *, int *);
 
 int main()
 {
