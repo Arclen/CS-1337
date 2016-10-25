@@ -1,6 +1,7 @@
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
 #include <string>
+#include <stdlib.h>
 using namespace std;
 
 class Student{
@@ -16,6 +17,7 @@ public:
 
     Student(){
         name = "Bob";
+        iq = rand() % 20 + 50;
     }
 
     Student(string n, int x, int y, int q){}
