@@ -9,5 +9,6 @@ int main()
 {
     Student students[10];
     for(int i=0; i<10; i++)
-        cout<<students[i].getIQ()<<" ";
+        cout<<students[i]<<"\n";
+
 }
