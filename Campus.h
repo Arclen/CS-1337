@@ -1,5 +1,6 @@
 #ifndef CAMPUS_H_INCLUDED
 #define CAMPUS_H_INCLUDED
+#include <iostream>
 #include <string>
 #include <stdlib.h>
 using namespace std;
@@ -7,17 +8,21 @@ using namespace std;
 class Campus{
 
     private:
-        char area[][];
+        char area[25][25];
         int campus_size;
         int building_size;
 
         void buildCampus()
         {
-
+            for(int i=0; i<campus_size; i++)
+             {
+                for(int j=0; j<campus_size; j++)
+                    area[i][j] = 'B';
+             }
         }
 
     public:
-        Campus(int csize int bsize)
+        Campus(int csize, int bsize)
         {
             if(bsize < csize && csize < 26)
             {
@@ -38,6 +43,15 @@ class Campus{
             return building_size;
         }
 
+        friend ostream& operator<<(ostream& os, Campus& camp)
+        {
+             for(int i=0; i<camp.getCampusDimension(); i++)
+             {
+                for(int j=0; j<camp.getCampusDimension(); j++)
+                    cout<<camp.area[i][j];
+                cout<<"\n";
+             }
+        }
 
 };
 #endif // CAMPUS_H_INCLUDED
