@@ -26,7 +26,13 @@ public:
         studentPos();
     }
 
-    Student(string n, int x, int y, int q){}
+    Student(string n, int x, int y, int q)
+    {
+        name = n;
+        xpos = x;
+        ypos = y;
+        iq = q;
+    }
 
     void setIQ(int i)
     {
