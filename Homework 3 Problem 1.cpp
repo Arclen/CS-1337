@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    Campus camp(25, 15);
+    Campus camp(5, 5);
     cout<<camp;
     Student students[10];
     for(int i=0; i<10; i++)
