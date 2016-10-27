@@ -43,7 +43,7 @@ class Campus{
             return building_size;
         }
 
-        friend ostream& operator<<(ostream& os, Campus& camp)
+        friend ostream& operator<<(ostream& os, const Campus& camp)
         {
              for(int i=0; i<camp.getCampusDimension(); i++)
              {
