@@ -44,7 +44,7 @@ class Student{
             return iq;
         }
 
-        friend ostream& operator<<(ostream& os, Student& stu)
+        friend ostream& operator<<(ostream& os, const Student& stu)
         {
              os << stu.name << " has iq " << stu.getIQ() << " and is at (" << stu.xpos << ", "<< stu.ypos << ")";
         }
