@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <math.h>
 using namespace std;
 
 class Campus{
@@ -14,23 +15,49 @@ class Campus{
 
         void buildCampus()
         {
+            //Ask Prof Feng if should cast to int
+            int trash = (int) floor(0.1 * (campus_size*campus_size - building_size*building_size));
             for(int i=0; i<campus_size; i++)
              {
                 for(int j=0; j<campus_size; j++)
-                    area[i][j] = 'B';
+                {
+                    if (i==building_size-1 && j==building_size-1)
+                        area[i][j] = 'D';
+                    else if(i<building_size && j<building_size)
+                        area[i][j] = 'S';
+                    else if(rand() %10+1 == 1)
+                        area[i][j] = 'T';
+                    else area[i][j] = ' ';
+                }
              }
         }
 
     public:
         Campus(int csize, int bsize)
         {
-            if(bsize < csize && csize < 26)
+            bool ok = (bsize < csize && csize < 26);
+            if(ok)
             {
                 campus_size = csize;
                 building_size = bsize;
                 buildCampus();
             }
-
+            else
+            {
+                while(!ok)
+                {
+                    cout <<"Please make sure the building size is less than the campus size,\n"
+                         <<"and that both are less than 25\n"
+                         <<"New campus size: ";
+                    cin >> csize;
+                    cout <<"New building size: ";
+                    cin >> bsize;
+                    ok = (bsize < csize && csize < 26);
+                }
+                campus_size = csize;
+                building_size = bsize;
+                buildCampus();
+            }
         }
 
         int getCampusDimension()
@@ -43,11 +70,11 @@ class Campus{
             return building_size;
         }
 
-        friend ostream& operator<<(ostream& os, const Campus& camp)
+        friend ostream& operator<<(ostream& os, const Campus &camp)
         {
-             for(int i=0; i<camp.getCampusDimension(); i++)
+             for(int i=0; i<camp.campus_size; i++)
              {
-                for(int j=0; j<camp.getCampusDimension(); j++)
+                for(int j=0; j<camp.campus_size; j++)
                     cout<<camp.area[i][j];
                 cout<<"\n";
              }
