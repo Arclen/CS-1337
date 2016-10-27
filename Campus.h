@@ -25,6 +25,7 @@ class Campus{
                         area[i][j] = 'D';
                     else if(i<building_size && j<building_size)
                         area[i][j] = 'S';
+                        //Ask Prof Feng if this is correct
                     else if(rand() %10+1 == 1)
                         area[i][j] = 'T';
                     else area[i][j] = ' ';
