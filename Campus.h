@@ -25,12 +25,15 @@ class Campus{
                         area[i][j] = 'D';
                     else if(i<building_size && j<building_size)
                         area[i][j] = 'S';
-                        //Ask Prof Feng if this is correct
-                    else if(rand() %10+1 == 1)
-                        area[i][j] = 'T';
+                        //Ask Prof Feng if this is correct implementation for 10%, or if should put T in certain number of spaces randomly
+                    //else if(rand() %10+1 == 1)
+                    //    area[i][j] = 'T';
                     else area[i][j] = ' ';
                 }
              }
+             //if this is correct, ask Prof Feng how to account for missing spaces
+             for(int i=0; i<trash; i++)
+                 area[rand() % (campus_size-building_size) + building_size][rand() % (campus_size-building_size) + building_size] = 'T';
         }
 
     public:
