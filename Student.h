@@ -18,8 +18,6 @@ class Student{
             ypos = rand() % 24;
         }
     public:
-        void studentMove();
-
         Student()
         {
             name = "Bob";
@@ -40,14 +38,19 @@ class Student{
             iq = i;
         }
 
-        int getIQ(){
+        int getIQ()
+        {
             return iq;
         }
 
-        friend ostream& operator<<(ostream& os, const Student& stu)
+        void studentMove()
         {
-             os << stu.name << " has iq " << stu.getIQ()
-                << " and is at (" << stu.xpos << ", "<< stu.ypos << ")";
+            int i = rand() % 4 + 1;
+        }
+
+        friend ostream& operator<<(ostream& os, const Student &stu)
+        {
+             os << stu.name << " has iq " << stu.iq << " and is at (" << stu.xpos << ", "<< stu.ypos << ")";
         }
 
 };
