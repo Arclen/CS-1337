@@ -17,6 +17,7 @@ class Campus{
         {
             //Ask Prof Feng if should cast to int
             int trash = (int) floor(0.1 * (campus_size*campus_size - building_size*building_size));
+            int filled = false;
             for(int i=0; i<campus_size; i++)
              {
                 for(int j=0; j<campus_size; j++)
@@ -32,8 +33,22 @@ class Campus{
                 }
              }
              //if this is correct, ask Prof Feng how to account for missing spaces
+            /*
              for(int i=0; i<trash; i++)
                  area[rand() % (campus_size-building_size) + building_size][rand() % (campus_size-building_size) + building_size] = 'T';
+            */
+            while(!filled)
+            {
+                int x=rand() % campus_size;
+                int y=rand() % campus_size;
+                if(area[x][y] == ' ')
+                {
+                    area[x][y] = 'T';
+                    trash--;
+                }
+                if(trash == 0)
+                    filled = true;
+            }
         }
 
     public:
