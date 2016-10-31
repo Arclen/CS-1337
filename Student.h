@@ -70,7 +70,9 @@ class Student{
 
         friend ostream& operator<<(ostream& os, const Student &stu)
         {
-             os << stu.name << " has iq " << stu.iq << " and is at (" << stu.xpos << ", "<< stu.ypos << ")";
+             os << stu.name
+                << " has iq " << stu.iq
+                << " and is at (" << stu.xpos << ", "<< stu.ypos << ")";
         }
 
 };
