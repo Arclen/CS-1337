@@ -17,7 +17,7 @@ class Campus{
         {
             //Ask Prof Feng if should cast to int
             int trash = (int) floor(0.1 * (campus_size*campus_size - building_size*building_size));
-            int filled = false;
+            bool filled = false;
             for(int i=0; i<campus_size; i++)
              {
                 for(int j=0; j<campus_size; j++)
