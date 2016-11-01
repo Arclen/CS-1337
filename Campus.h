@@ -1,10 +1,12 @@
+//Jacob Liou CS 1337
+
+using namespace std;
 #ifndef CAMPUS_H_INCLUDED
 #define CAMPUS_H_INCLUDED
 #include <iostream>
 #include <string>
 #include <stdlib.h>
 #include <math.h>
-using namespace std;
 
 class Campus{
 
@@ -15,7 +17,6 @@ class Campus{
 
         void buildCampus()
         {
-            //Ask Prof Feng if should cast to int
             int trash = (int) floor(0.1 * (campus_size*campus_size - building_size*building_size));
             bool filled = false;
             for(int i=0; i<campus_size; i++)
@@ -26,17 +27,9 @@ class Campus{
                         area[i][j] = 'D';
                     else if(i<building_size && j<building_size)
                         area[i][j] = 'S';
-                        //Ask Prof Feng if this is correct implementation for 10%, or if should put T in certain number of spaces randomly
-                    //else if(rand() %10+1 == 1)
-                    //    area[i][j] = 'T';
                     else area[i][j] = ' ';
                 }
              }
-             //if this is correct, ask Prof Feng how to account for missing spaces
-            /*
-             for(int i=0; i<trash; i++)
-                 area[rand() % (campus_size-building_size) + building_size][rand() % (campus_size-building_size) + building_size] = 'T';
-            */
             while(!filled)
             {
                 int x=rand() % campus_size;
