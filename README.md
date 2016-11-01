@@ -1,2 +1,2 @@
 # CS-1337_Assignments
-Homework for my CS class
+Just some code to practice for my CS class 
