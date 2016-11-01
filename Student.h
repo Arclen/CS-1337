@@ -1,9 +1,11 @@
+//Jacob Liou CS 1337
+
+using namespace std;
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
 #include <iostream>
 #include <string>
 #include <stdlib.h>
-using namespace std;
 
 class Student{
 
@@ -45,7 +47,6 @@ class Student{
 
         void studentMove()
         {
-            //ask Prof Feng if in future, students can be in trash space
             int i = rand() % 4 + 1;
             switch(i)
             {
