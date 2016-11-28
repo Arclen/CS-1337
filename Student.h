@@ -3,35 +3,46 @@
 using namespace std;
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
+#include "Campus.h"
+#include "Trash.h"
 #include <iostream>
 #include <string>
 #include <stdlib.h>
 
-class Student{
+class Student: public Person{
+
+        friend class Campus;
+        friend class Trash;
 
     private:
-        string name;
-        int xpos, ypos;
+        string fname;
+        string lname;
+        Position pos;
         int iq;
+        //Trash pockets[10];
 
-        void studentPos()
-        {
-            xpos = rand() % 24;
-            ypos = rand() % 24;
-        }
+
     public:
         Student()
         {
-            name = "Bob";
+            fname = "Bob";
+            lname = "Doherty";
             iq = rand() % 20 + 50;
-            studentPos();
+            pos.pos_x = 10;
+            pos.pos_y = 10;
         }
 
-        Student(string n, int x, int y, int q)
+        void go_to_campus(Campus c)
         {
-            name = n;
-            xpos = x;
-            ypos = y;
+            c.placeStudent();
+            cout<<"go_to_campus debug";
+        }
+        Student(string f, string l, Position p, int q)
+        {
+            fname = f;
+            lname = l;
+            pos.pos_x = p.pos_x;
+            pos.pos_y = p.pos_y;
             iq = q;
         }
 
@@ -45,7 +56,7 @@ class Student{
             return iq;
         }
 
-        void studentMove()
+        /*void studentMove()
         {
             int i = rand() % 4 + 1;
             switch(i)
@@ -68,13 +79,16 @@ class Student{
                 break;
             }
         }
+*/
+
 
         friend ostream& operator<<(ostream& os, const Student &stu)
         {
-             os << stu.name
+             os << stu.fname << " " << stu.lname
                 << " has iq " << stu.iq
-                << " and is at (" << stu.xpos << ", "<< stu.ypos << ")";
+                << " and is at (" << stu.pos.pos_x<< ", "<< stu.pos.pos_y<< ")";
         }
+
 
 };
 #endif // STUDENT_H_INCLUDED
