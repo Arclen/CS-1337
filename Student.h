@@ -3,18 +3,22 @@
 using namespace std;
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
+#include "Campus.h"
+#include "Trash.h"
 #include <iostream>
 #include <string>
 #include <stdlib.h>
 
-class Student{
+class Student: public Person{
 
     private:
-        string name;
+        string fname;
+        string lname;
         int xpos, ypos;
         int iq;
+        Trash pockets[10];
 
-        void studentPos()
+        void go_to_campus(Campus &camp)
         {
             xpos = rand() % 24;
             ypos = rand() % 24;
@@ -22,14 +26,17 @@ class Student{
     public:
         Student()
         {
-            name = "Bob";
+            fname = "Bob";
+            lname = "Doherty";
             iq = rand() % 20 + 50;
-            studentPos();
+            //Campus camp(5,5);
+            //go_to_campus(camp);
         }
 
-        Student(string n, int x, int y, int q)
+        Student(string f, string l, int x, int y, int q)
         {
-            name = n;
+            fname = f;
+            lname = l;
             xpos = x;
             ypos = y;
             iq = q;
@@ -69,12 +76,16 @@ class Student{
             }
         }
 
+
+
         friend ostream& operator<<(ostream& os, const Student &stu)
         {
-             os << stu.name
+             os << stu.fname << " " << stu.lname
                 << " has iq " << stu.iq
                 << " and is at (" << stu.xpos << ", "<< stu.ypos << ")";
         }
+
+        friend class Campus;
 
 };
 #endif // STUDENT_H_INCLUDED
