@@ -14,6 +14,9 @@ using namespace std;
 
 class Trash
 {
+    friend class Student;
+    friend class Campus;
+
     private:
         string name;
         int value;
@@ -52,7 +55,18 @@ class Trash
             name = tnames[index];
             value = tvals[index];
 
-            cout<<name<<value;
+            //cout<<name<<value;
+            }
+
+            void removeTrash()
+            {
+                name = " ";
+                value = 0;
+            }
+
+            friend ostream& operator<<(ostream& os, const Trash &tr)
+            {
+                cout<<tr.name<<" "<<tr.value<<"\n";
             }
 };
 

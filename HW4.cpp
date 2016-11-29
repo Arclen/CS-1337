@@ -11,13 +11,16 @@ using namespace std;
 
 int main()
 {
-    //Trash t;
+    /*Trash t;
+    cout<<t;
+    t.removeTrash();
+    cout<<t;*/
    Dimension camp, build;
-   camp.width=12;
-   build.width=7;
-   camp.height=9;
-   build.height=4;
-   Campus test(camp, build);
+   camp.width=16;
+   build.width=5;
+   camp.height=14;
+   build.height=7;
+   Campus UTD(camp, build);
 /*
    Position pos;
    pos.pos_x=5;
@@ -25,9 +28,18 @@ int main()
    Student John("John", "Go f urself", pos, 20);
 */
 
-    Student John;
-   John.go_to_campus(test);
-   //cout<<John;
+    Student John, Jane;
+    John.go_to_campus(UTD);
+    Jane.go_to_campus(UTD);
+    cout<<UTD;
+    int moves = 0;
+    while(UTD.numTrash() != 0)
+    {
+        John.move(UTD);
+        Jane.move(UTD);
+        cout<<UTD.numTrash()<<"\n";
+        cout<<UTD;
+        moves++;
+    }
 
-   cout<<test;
 }

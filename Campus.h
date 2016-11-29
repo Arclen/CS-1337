@@ -24,7 +24,8 @@ class Campus{
 
         void buildCampus()
         {
-            trash = (int) floor(0.1 * (cdim.width*cdim.height - bdim.width*bdim.height));
+            int trashAmount = (int) floor(0.05 * (cdim.width*cdim.height - bdim.width*bdim.height));
+            trash = trashAmount;
             bool filled = false;
             for(int i=0; i<cdim.height; i++)
              {
@@ -56,9 +57,9 @@ class Campus{
                 if(area[x][y] == ' ')
                 {
                     area[x][y] = 'T';
-                    trash--;
+                    trashAmount--;
                 }
-                if(trash == 0)
+                if(trashAmount == 0)
                     filled = true;
             }
         }
@@ -66,16 +67,12 @@ class Campus{
 
         void placeStudent(int x, int y)
         {
-            //cout<<"placeStudent debug";
-            //if(area[x][y] == ' ')
-            area[x][y] = 'S';
-            for(int i=0; i<25; i++)
-                {
-                    for(int j=0; j<25; j++)
-                        {
-                            area[i][j] = 'S';
-                        }
-                }
+            if(area[x][y] == ' ')
+            {
+                area[x][y] = 'S';
+                //cout<<"placeStudent debug\n";
+            }
+
         }
     public:
         Campus(Dimension c, Dimension b)
@@ -110,7 +107,6 @@ class Campus{
         {
             return cdim.width;
         }
-
         int getBuildingDimension()
         {
             return bdim.width;
