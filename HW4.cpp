@@ -13,10 +13,10 @@ int main()
 {
     //Trash t;
    Dimension camp, build;
-   camp.width=25;
-   build.width=5;
-   camp.height=25;
-   build.height=5;
+   camp.width=12;
+   build.width=7;
+   camp.height=9;
+   build.height=4;
    Campus test(camp, build);
 /*
    Position pos;
@@ -25,8 +25,8 @@ int main()
    Student John("John", "Go f urself", pos, 20);
 */
 
-    //Student John;
-   //John.go_to_campus(test);
+    Student John;
+   John.go_to_campus(test);
    //cout<<John;
 
    cout<<test;

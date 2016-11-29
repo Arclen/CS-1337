@@ -19,7 +19,7 @@ class Student: public Person{
         string lname;
         Position pos;
         int iq;
-        //Trash pockets[10];
+        //Trash pockets;
 
 
     public:
@@ -28,14 +28,16 @@ class Student: public Person{
             fname = "Bob";
             lname = "Doherty";
             iq = rand() % 20 + 50;
-            pos.pos_x = 10;
-            pos.pos_y = 10;
+            pos.pos_x = 0;
+            pos.pos_y = 0;
         }
 
         void go_to_campus(Campus c)
         {
-            c.placeStudent();
-            cout<<"go_to_campus debug";
+            if(pos.pos_x == 0 && pos.pos_y == 0)
+                c.placeStudent(rand() % c.cdim.width, rand() % c.cdim.height);
+            else c.placeStudent(pos.pos_x, pos.pos_y);
+            //cout<<"go_to_campus debug";
         }
         Student(string f, string l, Position p, int q)
         {

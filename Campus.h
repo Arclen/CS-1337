@@ -40,8 +40,9 @@ class Campus{
             bool isFac = false;
             while(!isFac)
             {
-            int a=rand() % bdim.width;
-            int b=rand() % bdim.height;
+            int a=(rand() % bdim.height);
+            int b=(rand() % bdim.width);
+
             if(area[a][b] != 'D')
                 {
                     area[a][b] = 'F';
@@ -62,6 +63,20 @@ class Campus{
             }
         }
 
+
+        void placeStudent(int x, int y)
+        {
+            //cout<<"placeStudent debug";
+            //if(area[x][y] == ' ')
+            area[x][y] = 'S';
+            for(int i=0; i<25; i++)
+                {
+                    for(int j=0; j<25; j++)
+                        {
+                            area[i][j] = 'S';
+                        }
+                }
+        }
     public:
         Campus(Dimension c, Dimension b)
         {
@@ -72,6 +87,15 @@ class Campus{
                 bdim.width=b.width;
                 cdim.height=c.height;
                 cdim.width=c.width;
+
+                for(int i=0; i<25; i++)
+                {
+                    for(int j=0; j<25; j++)
+                        {
+                            area[i][j] = ' ';
+                        }
+                }
+
                 buildCampus();
             //}
         }
@@ -80,20 +104,7 @@ class Campus{
             return trash;
         }
 
-        void placeStudent()
-        {
-            bool stuIn = false;
-            //while(!stuIn)
-            //{
-             int x=rand() % cdim.width;
-             int y=rand() % cdim.height;
-             if(area[x][y] == ' ')
-                {
-                    area[x][y] = 'S';
-                    stuIn = true;
-                }
-            //}
-        }
+
 /*
         int getCampusDimension()
         {
