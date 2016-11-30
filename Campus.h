@@ -64,7 +64,7 @@ class Campus{
             }
         }
 
-
+/*
         void placeStudent(int x, int y)
         {
             if(area[x][y] == ' ')
@@ -73,7 +73,7 @@ class Campus{
                 //cout<<"placeStudent debug\n";
             }
 
-        }
+        }*/
     public:
         Campus(Dimension c, Dimension b)
         {

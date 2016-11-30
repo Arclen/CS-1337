@@ -49,11 +49,11 @@ class Student: public Person{
                     {
                         pos.pos_x = x;
                         pos.pos_y = y;
-                        c.placeStudent(x,y);
+                        c.area[x][y] = 'S';
                         emptySpace = true;
                     }
                 }
-            else c.placeStudent(pos.pos_x, pos.pos_y);
+            else c.area[pos.pos_x][pos.pos_y];
             //cout<<"go_to_campus debug";
         }
         Student(string f, string l, Position p, int q)
@@ -83,120 +83,156 @@ class Student: public Person{
 
         void move(Campus& c)
         {
-            int i = rand() % 8 + 1;
+            c.area[pos.pos_x][pos.pos_y] = ' ';
+            int i = rand() % 8 ;
+
+            loop:
             if(c.numTrash()>0)
                 switch(i)
                 {
                 case 1:
-                    if(pos.pos_x>c.bdim.width)
+                    if(pos.pos_x>c.bdim.width+1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_x--;
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_x--;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 case 2:
-                    if(pos.pos_y>c.bdim.height)
+                    if(pos.pos_y>c.bdim.height+1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_y--;
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_y--;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 case 3:
-                    if(pos.pos_x<c.cdim.width)
+                    if(pos.pos_x<c.cdim.width-1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_x++;
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_x++;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 case 4:
-                    if(pos.pos_y<c.cdim.height)
+                    if(pos.pos_y<c.cdim.height-1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_y++;
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_y++;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 case 5:
-                    if(pos.pos_x>c.bdim.width && pos.pos_y<c.cdim.height)
+                    if(pos.pos_x>c.bdim.width+1 && pos.pos_y<c.cdim.height-1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_x--;
+                        pos.pos_y++;
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_x--;
-                        pos.pos_y++;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 case 6:
-                    if(pos.pos_x<c.cdim.width && pos.pos_y>c.bdim.height)
+                    if(pos.pos_x<c.cdim.width-1 && pos.pos_y>c.bdim.height+1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_x++;
+                        pos.pos_y--;
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_x++;
-                        pos.pos_y--;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 case 7:
-                    if(pos.pos_x<c.cdim.width && pos.pos_y<c.cdim.height)
+                    if(pos.pos_x<c.cdim.width-1 && pos.pos_y<c.cdim.height-1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_x++;
+                        pos.pos_y++;
+                        cout<<"\nkek\n";
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_x++;
-                        pos.pos_y++;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 case 8:
-                    if(pos.pos_x>c.bdim.width && pos.pos_y>c.bdim.height)
+                    if(pos.pos_x>c.bdim.width+1 && pos.pos_y>c.bdim.height+1)
                     {
-                        if(c.area[pos.pos_x][pos.pos_y] = 'T')
+                        pos.pos_x--;
+                        pos.pos_y--;
+                        if(c.area[pos.pos_x][pos.pos_y] == 'T')
                         {
                             pockets[getNumTrash()] = Trash();
                             c.trash--;
                         }
-                        c.area[pos.pos_x][pos.pos_y] = ' ';
-                        pos.pos_x--;
-                        pos.pos_y--;
-                        c.placeStudent(pos.pos_x, pos.pos_y);
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else
+                    {
+                        i = rand() % 8;
+                        goto loop;
                     }
                     break;
                 }
-            else cout<<"kek";
+
         }
 
         int getNumTrash()

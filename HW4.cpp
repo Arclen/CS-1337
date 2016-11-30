@@ -16,9 +16,9 @@ int main()
     t.removeTrash();
     cout<<t;*/
    Dimension camp, build;
-   camp.width=16;
+   camp.width=10;
    build.width=5;
-   camp.height=14;
+   camp.height=8;
    build.height=7;
    Campus UTD(camp, build);
 /*
@@ -33,12 +33,13 @@ int main()
     Jane.go_to_campus(UTD);
     cout<<UTD;
     int moves = 0;
-    while(UTD.numTrash() != 0)
+    while(moves<30)//UTD.numTrash() != 0)
     {
         John.move(UTD);
         Jane.move(UTD);
-        cout<<UTD.numTrash()<<"\n";
+    //    cout<<UTD.numTrash()<<"\n";
         cout<<UTD;
+        cout<<"---------------------\n";
         moves++;
     }
 
