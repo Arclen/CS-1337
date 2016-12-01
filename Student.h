@@ -34,6 +34,22 @@ class Student: public Person{
             for(int i=0; i<10; i++)
             {
                 pockets[i].removeTrash();
+                //cout<<pockets[i];
+            }
+        }
+
+        Student(string f, string l, Position p, int q)
+        {
+            fname = f;
+            lname = l;
+            pos.pos_x = p.pos_x;
+            pos.pos_y = p.pos_y;
+            iq = q;
+
+            for(int i=0; i<10; i++)
+            {
+                pockets[i].removeTrash();
+                //cout<<pockets[i];
             }
         }
 
@@ -55,20 +71,6 @@ class Student: public Person{
                 }
             else c.area[pos.pos_x][pos.pos_y];
             //cout<<"go_to_campus debug";
-        }
-        Student(string f, string l, Position p, int q)
-        {
-            fname = f;
-            lname = l;
-            pos.pos_x = p.pos_x;
-            pos.pos_y = p.pos_y;
-            iq = q;
-
-            for(int i=0; i<10; i++)
-            {
-                pockets[i].removeTrash();
-                cout<<pockets[i];
-            }
         }
 
         void setIQ(int i)
