@@ -88,7 +88,9 @@ class Student: public Person{
                 /*int x=rand() % c.cdim.width;
                 int y=rand() % c.cdim.height;
                 c.area[x][y]='G';*/
-                    c.area[pos.pos_x-1][pos.pos_y-1] = 'G';
+                    pos.pos_x--;
+                    pos.pos_y--;
+                    c.area[pos.pos_x][pos.pos_y] = 'G';
                     cout<<"move debug\n";
 
             }
