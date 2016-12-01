@@ -28,16 +28,18 @@ int main()
    Student John("John", "Go f urself", pos, 20);
 */
 
-    Student John, Jane;
+    Student John("John", "Cena", 69);
+    Student Jane("Jane", "Eyre", 120);
     John.go_to_campus(UTD);
     Jane.go_to_campus(UTD);
     cout<<UTD;
     int moves = 0;
-    while(moves<30)//UTD.numTrash() != 0)
+    while(moves<20)//UTD.numTrash() != 0)
     {
         John.move(UTD);
         Jane.move(UTD);
-        cout<<UTD.numTrash()<<"\n";
+        //cout<<UTD.numTrash()<<"\n";
+        //cout<<John.getNumTrash()<<" "<<Jane.getNumTrash()<<"\n";
         cout<<UTD;
         cout<<"---------------------\n";
         moves++;

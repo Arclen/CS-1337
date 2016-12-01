@@ -1,5 +1,8 @@
 //Jacob Liou CS 1337
-
+/*
+Optionals:
+-included speak() function
+*/
 using namespace std;
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
@@ -19,6 +22,7 @@ class Student: public Person{
         string lname;
         Position pos;
         int iq;
+        int grade;
         Trash pockets[10];
 
 
@@ -38,12 +42,14 @@ class Student: public Person{
             }
         }
 
-        Student(string f, string l, Position p, int q)
+        Student(string f, string l, int q)
         {
             fname = f;
             lname = l;
-            pos.pos_x = p.pos_x;
-            pos.pos_y = p.pos_y;
+            //pos.pos_x = p.pos_x;
+            //pos.pos_y = p.pos_y;
+            pos.pos_x = 0;
+            pos.pos_y = 0;
             iq = q;
 
             for(int i=0; i<10; i++)
@@ -90,10 +96,25 @@ class Student: public Person{
                 /*int x=rand() % c.cdim.width;
                 int y=rand() % c.cdim.height;
                 c.area[x][y]='G';*/
+                //c.area[pos.pos_x][pos.pos_y] = ' ';
+                int diffX = pos.pos_x - c.bdim.width;
+                int diffY = pos.pos_y - c.bdim.height;
+                int diff = diffX - diffY;
+                if(pos.pos_x == c.bdim.width && pos.pos_y == c.bdim.height)
+                {
+                    cout<<"at door\n";
+                }
+                else if(diff == 0)
+                {
                     pos.pos_x--;
                     pos.pos_y--;
-                    c.area[pos.pos_x][pos.pos_y] = 'G';
-                    cout<<"move debug\n";
+                }
+                else if (diff > 0)
+                    pos.pos_x--;
+                else if(diff < 0)
+                    pos.pos_y--;
+                c.area[pos.pos_x][pos.pos_y] = 'S';
+                //cout<<"move debug\n";
 
             }
             else
@@ -102,6 +123,7 @@ class Student: public Person{
                 int i = rand() % 8 + 1;
 
                 loop:
+                    i = rand() % 8+ 1;
                     if(c.numTrash()>0)
                     switch(i)
                     {
@@ -109,23 +131,9 @@ class Student: public Person{
                         if(pos.pos_x>0)
                         {
                             pos.pos_x--;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
-                            i = rand() % 8+ 1;
                             goto loop;
                         }
                         break;
@@ -133,19 +141,6 @@ class Student: public Person{
                         if(pos.pos_y>0)
                         {
                             pos.pos_y--;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
@@ -157,19 +152,6 @@ class Student: public Person{
                         if(pos.pos_x<c.cdim.width-1)
                         {
                             pos.pos_x++;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
@@ -181,19 +163,6 @@ class Student: public Person{
                         if(pos.pos_y<c.cdim.height-1)
                         {
                             pos.pos_y++;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
@@ -206,19 +175,6 @@ class Student: public Person{
                         {
                             pos.pos_x--;
                             pos.pos_y++;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
@@ -231,19 +187,6 @@ class Student: public Person{
                         {
                             pos.pos_x++;
                             pos.pos_y--;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
@@ -256,19 +199,6 @@ class Student: public Person{
                         {
                             pos.pos_x++;
                             pos.pos_y++;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
@@ -281,19 +211,6 @@ class Student: public Person{
                         {
                             pos.pos_x--;
                             pos.pos_y--;
-                            if(c.area[pos.pos_x][pos.pos_y] == 'T')
-                            {
-                                pockets[getNumTrash()] = Trash();
-                                c.trash--;
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            }
-                            else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                                c.area[pos.pos_x][pos.pos_y] = 'S';
-                            else
-                            {
-                                i = rand() % 8+ 1;
-                                goto loop;
-                            }
                         }
                         else
                         {
@@ -302,6 +219,28 @@ class Student: public Person{
                         }
                         break;
                     }
+                if(c.area[pos.pos_x][pos.pos_y] == 'T')
+                {
+                    int index = getNumTrash();
+                    pockets[index] = Trash();
+                    if(pockets[index].name == "bomb")
+                    {
+                        iq -= 2;
+                        cout<<"BOOM!\n";
+                        pockets[index].removeTrash();
+                    }
+                    else speak();
+                    c.trash--;
+                    c.area[pos.pos_x][pos.pos_y] = 'S';
+
+                }
+                else if(c.area[pos.pos_x][pos.pos_y] == ' ')
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                else
+                {
+                    i = rand() % 8+ 1;
+                    goto loop;
+                }
             }
 
             }
@@ -315,6 +254,10 @@ class Student: public Person{
             return num;
         }
 
+        void speak()
+        {
+            cout<<fname<<": I found a "<<pockets[getNumTrash()-1].name<<"!\n";
+        }
         friend ostream& operator<<(ostream& os, const Student &stu)
         {
              os << stu.fname << " " << stu.lname
