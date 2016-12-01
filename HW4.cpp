@@ -37,7 +37,7 @@ int main()
     {
         John.move(UTD);
         Jane.move(UTD);
-    //    cout<<UTD.numTrash()<<"\n";
+        cout<<UTD.numTrash()<<"\n";
         cout<<UTD;
         cout<<"---------------------\n";
         moves++;
