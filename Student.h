@@ -96,25 +96,38 @@ class Student: public Person{
                 /*int x=rand() % c.cdim.width;
                 int y=rand() % c.cdim.height;
                 c.area[x][y]='G';*/
-                //c.area[pos.pos_x][pos.pos_y] = ' ';
+                c.area[pos.pos_x][pos.pos_y] = ' ';
                 int diffX = pos.pos_x - c.bdim.width;
                 int diffY = pos.pos_y - c.bdim.height;
-                int diff = diffX - diffY;
-                if(pos.pos_x == c.bdim.width && pos.pos_y == c.bdim.height)
-                {
-                    cout<<"at door\n";
-                }
-                else if(diff == 0)
+
+                if(diffX == diffY)
                 {
                     pos.pos_x--;
                     pos.pos_y--;
                 }
-                else if (diff > 0)
-                    pos.pos_x--;
-                else if(diff < 0)
+                else if(diffX == 0 && diffY > 0)
                     pos.pos_y--;
+                else if(diffX == 0 && diffY < 0)
+                    pos.pos_y++;
+                else if(diffX > 0 && diffY == 0)
+                    pos.pos_x--;
+                else if(diffX < 0 && diffY == 0)
+                    pos.pos_x++;
+                else if (diffX > 0 && diffY < 0)
+                    {
+                        pos.pos_x--;
+                        pos.pos_y++;
+                    }
+                else if(diffX < 0 && diffY > 0)
+                    {
+                        pos.pos_x++;
+                        pos.pos_y--;
+                    }
+                if(c.area[pos.pos_x][pos.pos_y] == 'D')
+                    cout<<"AT DOOR";
                 c.area[pos.pos_x][pos.pos_y] = 'S';
                 //cout<<"move debug\n";
+
 
             }
             else
@@ -232,6 +245,7 @@ class Student: public Person{
                     else speak();
                     c.trash--;
                     c.area[pos.pos_x][pos.pos_y] = 'S';
+                    grade += pockets[index].value;
 
                 }
                 else if(c.area[pos.pos_x][pos.pos_y] == ' ')
@@ -252,6 +266,11 @@ class Student: public Person{
                 if(pockets[i].name != " ")
                     num++;
             return num;
+        }
+
+        int getGrade()
+        {
+            return grade;
         }
 
         void speak()

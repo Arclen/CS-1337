@@ -34,7 +34,7 @@ int main()
     Jane.go_to_campus(UTD);
     cout<<UTD;
     int moves = 0;
-    while(moves<20)//UTD.numTrash() != 0)
+    while(moves<35)//UTD.numTrash() != 0)
     {
         John.move(UTD);
         Jane.move(UTD);
@@ -44,5 +44,10 @@ int main()
         cout<<"---------------------\n";
         moves++;
     }
+    /*if(John.getGrade() == Jane.getGrade())
+        cout<<"A tie! Both students have a grade of: "<< Jane.getGrade();
+    else if(John.getGrade() < Jane.getGrade())
+        cout<<"Jane wins with a grade of: "<<Jane.getGrade();
+    else cout<<"John wins with a grade of: "<<John.getGrade();*/
 
 }
