@@ -20,20 +20,21 @@ class Campus{
         char area[25][25];
         Dimension bdim;
         Dimension cdim;
+        Dimension facPos;
         int trash;
 
         void buildCampus()
         {
-            int trashAmount = (int) floor(0.05 * (cdim.width*cdim.height - bdim.width*bdim.height));
+            int trashAmount = (int) floor(0.35 * (cdim.width*cdim.height - bdim.width*bdim.height));
             trash = trashAmount;
             bool filled = false;
-            for(int i=0; i<cdim.height; i++)
+            for(int i=0; i<cdim.width; i++)
              {
-                for(int j=0; j<cdim.width; j++)
+                for(int j=0; j<cdim.height; j++)
                 {
-                    if (i==bdim.height-1 && j==bdim.width-1)
+                    if (i==bdim.width-1 && j==bdim.height-1)
                         area[i][j] = 'D';
-                    else if(i<bdim.height && j<bdim.width)
+                    else if(i<bdim.width && j<bdim.height)
                         area[i][j] = 'B';
                     else area[i][j] = ' ';
                 }
@@ -41,12 +42,14 @@ class Campus{
             bool isFac = false;
             while(!isFac)
             {
-            int a=(rand() % bdim.height);
-            int b=(rand() % bdim.width);
+            int a=(rand() % bdim.width);
+            int b=(rand() % bdim.height);
 
             if(area[a][b] != 'D')
                 {
                     area[a][b] = 'F';
+                    facPos.width = a;
+                    facPos.height = b;
                     isFac = true;
                 }
             }
@@ -64,22 +67,9 @@ class Campus{
             }
         }
 
-/*
-        void placeStudent(int x, int y)
-        {
-            if(area[x][y] == ' ')
-            {
-                area[x][y] = 'S';
-                //cout<<"placeStudent debug\n";
-            }
-
-        }*/
     public:
         Campus(Dimension c, Dimension b)
         {
-            //bool ok = (b.height < c.height && c.height < 26) && (b.width < c.width && c.width < 26);
-            //if(ok)
-            //{
                 bdim.height=b.height;
                 bdim.width=b.width;
                 cdim.height=c.height;
@@ -94,7 +84,7 @@ class Campus{
                 }
 
                 buildCampus();
-            //}
+
         }
         int numTrash()
         {
@@ -102,16 +92,6 @@ class Campus{
         }
 
 
-/*
-        int getCampusDimension()
-        {
-            return cdim.width;
-        }
-        int getBuildingDimension()
-        {
-            return bdim.width;
-        }
-*/
 
 
         friend ostream& operator<<(ostream& os, const Campus &camp)

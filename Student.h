@@ -23,6 +23,7 @@ class Student: public Person{
         Position pos;
         int iq;
         int grade;
+        bool projectGraded;
         Trash pockets[10];
 
 
@@ -34,11 +35,12 @@ class Student: public Person{
             iq = rand() % 20 + 50;
             pos.pos_x = 0;
             pos.pos_y = 0;
+            projectGraded = false;
+
 
             for(int i=0; i<10; i++)
             {
                 pockets[i].removeTrash();
-                //cout<<pockets[i];
             }
         }
 
@@ -49,14 +51,21 @@ class Student: public Person{
             pos.pos_x = 0;
             pos.pos_y = 0;
             iq = q;
+            projectGraded = false;
 
             for(int i=0; i<10; i++)
             {
                 pockets[i].removeTrash();
-                //cout<<pockets[i];
             }
         }
 
+        void showProj()
+        {
+            cout<<"\n"<<fname<<"'s Project: ";
+            for(int i=0; i<11; i++)
+                cout<<pockets[i].name<<" ";
+            cout<<endl;
+        }
         void go_to_campus(Campus& c)
         {
             bool emptySpace = false;
@@ -74,7 +83,6 @@ class Student: public Person{
                     }
                 }
             else c.area[pos.pos_x][pos.pos_y];
-            //cout<<"go_to_campus debug";
         }
 
         void setIQ(int i)
@@ -87,73 +95,71 @@ class Student: public Person{
             return iq;
         }
 
+        bool isProjGraded()
+        {
+            return projectGraded;
+        }
         void move(Campus& c)
         {
             if (c.numTrash() == 0)
             {
-                c.area[pos.pos_x][pos.pos_y] = ' ';
-                int diffX = pos.pos_x - c.bdim.width;
-                int diffY = pos.pos_y - c.bdim.height;
-
-
-                if(diffX == diffY)
+                if(pos.pos_x < c.bdim.width && pos.pos_y < c.bdim.height)
                 {
-                    pos.pos_x--;
-                    pos.pos_y--;
-                }
-                else if(diffX > 0)// && pos.pos_x != c.bdim.width+2)
-                    pos.pos_x--;
-                else if(diffX < 0)
-                    pos.pos_x++;
-                else if(diffY > 0)
-                    pos.pos_y--;
-                else if(diffY < 0)
-                    pos.pos_y++;
-                /*else if(diffX == 0 && diffY > 0)
-                    pos.pos_y--;
-                else if(diffX == 0 && diffY < 0)
-                    pos.pos_y++;
-                else if(diffX > 0 && diffY == 0)
-                    pos.pos_x--;
-                else if(diffX < 0 && diffY == 0)
-                    pos.pos_x++;
-                else if (diffX > 0 && diffY < 0)
-                    {
+                    c.area[pos.pos_x][pos.pos_y] = 'B';
+                    int diffX = pos.pos_x - c.facPos.width;
+                    int diffY = pos.pos_y - c.facPos.height;
+
+
+                    if(diffX > 0)
                         pos.pos_x--;
+                    else if(diffX < 0)
+                        pos.pos_x++;
+                    else if(diffY > 0)
+                        pos.pos_y--;
+                    else if(diffY < 0)
                         pos.pos_y++;
+
+                    c.area[pos.pos_x][pos.pos_y] = 'S';
+
+                    if(diffX == 0 && diffY == 0)
+                    {
+                        c.area[pos.pos_x][pos.pos_y] = 'F';
+                        projectGraded = true;
                     }
-                else if(diffX < 0 && diffY > 0)
+                }
+
+                else {
+                    c.area[pos.pos_x][pos.pos_y] = ' ';
+                    int diffX = pos.pos_x - c.bdim.width+1;
+                    int diffY = pos.pos_y - c.bdim.height+1;
+
+                    if(diffX > 0)
+                        pos.pos_x--;
+                    else if(diffX < 0)
+                        pos.pos_x++;
+                    else if(diffY > 0)
+                        pos.pos_y--;
+                    else if(diffY < 0)
+                        pos.pos_y++;
+
+                    if(c.area[pos.pos_x][pos.pos_y] == 'B')
                     {
                         pos.pos_x++;
-                        pos.pos_y--;
-                    }
-                else if(diffX < 0 && diffY < 0)
-                    {
-                        pos.pos_x++;
                         pos.pos_y++;
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
                     }
-                else if(diffX > 0 && diffY > 0)
+                    if(c.area[pos.pos_x][pos.pos_y] == 'D')
                     {
-                        pos.pos_x--;
-                        pos.pos_y--;
-                    }*/
-                if(c.area[pos.pos_x][pos.pos_y] == 'B')
-                {
-                    cout<<"building wall debug\n";
-                    pos.pos_x++;
-                    pos.pos_y++;
-                    c.area[pos.pos_x][pos.pos_y] = 'G';
-                }
-                if(c.area[pos.pos_x][pos.pos_y] == 'D')
-                {
-                    cout<<"AT DOOR\n";
-                    c.area[pos.pos_x][pos.pos_y] = 'G';
-                }
-                else if(c.area[pos.pos_x][pos.pos_y] == ' ')
-                        c.area[pos.pos_x][pos.pos_y] = 'G';
-                //cout<<"move debug\n";
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                    }
+                    else if(c.area[pos.pos_x][pos.pos_y] == ' ')
+                            c.area[pos.pos_x][pos.pos_y] = 'S';
 
-
+                    if(c.area[c.bdim.width-1][c.bdim.height-1] == 'B')
+                    c.area[c.bdim.width-1][c.bdim.height-1] = 'D';
+                }
+                if(c.area[c.bdim.width-1][c.bdim.height-1] == ' ')
+                    c.area[c.bdim.width-1][c.bdim.height-1] = 'D';
             }
             else
             {
@@ -264,7 +270,8 @@ class Student: public Person{
                     if(pockets[index].name == "bomb")
                     {
                         iq -= 2;
-                        cout<<"BOOM!\n";
+                        cout<<"!!!!!!\n!BOOM!\n!!!!!!\n"
+                            <<"Uh oh! Looks like "<<fname<<" picked up a bomb!\n\n";
                         pockets[index].removeTrash();
                     }
                     else speak();

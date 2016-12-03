@@ -11,10 +11,6 @@ using namespace std;
 
 int main()
 {
-    /*Trash t;
-    cout<<t;
-    t.removeTrash();
-    cout<<t;*/
    Dimension camp, build;
    camp.width=10;
    build.width=5;
@@ -28,21 +24,33 @@ int main()
     John.go_to_campus(UTD);
     Jane.go_to_campus(UTD);
     cout<<UTD;
-    int moves = 0;
-    while(moves<35)//UTD.numTrash() != 0)
+    int counter = 0;
+    while(!John.isProjGraded() && !Jane.isProjGraded())
     {
         John.move(UTD);
         Jane.move(UTD);
-        //cout<<UTD.numTrash()<<"\n";
-        //cout<<John.getNumTrash()<<" "<<Jane.getNumTrash()<<"\n";
-        cout<<UTD;
-        cout<<"---------------------\n";
-        moves++;
+        if(counter <= 10)
+        {
+            cout<<UTD;
+            cout<<"---------------------\n";
+        }
+        counter++;
     }
-    /*if(John.getGrade() == Jane.getGrade())
+    if(John.getGrade() == Jane.getGrade())
+    {
         cout<<"A tie! Both students have a grade of: "<< Jane.getGrade();
+        John.showProj();
+        Jane.showProj();
+    }
     else if(John.getGrade() < Jane.getGrade())
+    {
         cout<<"Jane wins with a grade of: "<<Jane.getGrade();
-    else cout<<"John wins with a grade of: "<<John.getGrade();*/
+        Jane.showProj();
+    }
+    else
+    {
+        cout<<"John wins with a grade of: "<<John.getGrade();
+        John.showProj();
+    }
 
 }
