@@ -21,12 +21,7 @@ int main()
    camp.height=8;
    build.height=7;
    Campus UTD(camp, build);
-/*
-   Position pos;
-   pos.pos_x=5;
-   pos.pos_y=5;
-   Student John("John", "Go f urself", pos, 20);
-*/
+
 
     Student John("John", "Cena", 69);
     Student Jane("Jane", "Eyre", 120);

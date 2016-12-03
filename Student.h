@@ -46,8 +46,6 @@ class Student: public Person{
         {
             fname = f;
             lname = l;
-            //pos.pos_x = p.pos_x;
-            //pos.pos_y = p.pos_y;
             pos.pos_x = 0;
             pos.pos_y = 0;
             iq = q;
@@ -93,19 +91,25 @@ class Student: public Person{
         {
             if (c.numTrash() == 0)
             {
-                /*int x=rand() % c.cdim.width;
-                int y=rand() % c.cdim.height;
-                c.area[x][y]='G';*/
                 c.area[pos.pos_x][pos.pos_y] = ' ';
                 int diffX = pos.pos_x - c.bdim.width;
                 int diffY = pos.pos_y - c.bdim.height;
+
 
                 if(diffX == diffY)
                 {
                     pos.pos_x--;
                     pos.pos_y--;
                 }
-                else if(diffX == 0 && diffY > 0)
+                else if(diffX > 0)// && pos.pos_x != c.bdim.width+2)
+                    pos.pos_x--;
+                else if(diffX < 0)
+                    pos.pos_x++;
+                else if(diffY > 0)
+                    pos.pos_y--;
+                else if(diffY < 0)
+                    pos.pos_y++;
+                /*else if(diffX == 0 && diffY > 0)
                     pos.pos_y--;
                 else if(diffX == 0 && diffY < 0)
                     pos.pos_y++;
@@ -123,9 +127,30 @@ class Student: public Person{
                         pos.pos_x++;
                         pos.pos_y--;
                     }
+                else if(diffX < 0 && diffY < 0)
+                    {
+                        pos.pos_x++;
+                        pos.pos_y++;
+                    }
+                else if(diffX > 0 && diffY > 0)
+                    {
+                        pos.pos_x--;
+                        pos.pos_y--;
+                    }*/
+                if(c.area[pos.pos_x][pos.pos_y] == 'B')
+                {
+                    cout<<"building wall debug\n";
+                    pos.pos_x++;
+                    pos.pos_y++;
+                    c.area[pos.pos_x][pos.pos_y] = 'G';
+                }
                 if(c.area[pos.pos_x][pos.pos_y] == 'D')
-                    cout<<"AT DOOR";
-                c.area[pos.pos_x][pos.pos_y] = 'S';
+                {
+                    cout<<"AT DOOR\n";
+                    c.area[pos.pos_x][pos.pos_y] = 'G';
+                }
+                else if(c.area[pos.pos_x][pos.pos_y] == ' ')
+                        c.area[pos.pos_x][pos.pos_y] = 'G';
                 //cout<<"move debug\n";
 
 
