@@ -13,6 +13,7 @@ class Student: public Person{
 
         friend class Campus;
         friend class Trash;
+        friend class Teacher;
 
     private:
         string fname;

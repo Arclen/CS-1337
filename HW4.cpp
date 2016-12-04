@@ -6,6 +6,7 @@ using namespace std;
 #include "Student.h"
 #include "Campus.h"
 #include "Trash.h"
+#include "Teacher.h"
 #include <string>
 #include <stdlib.h>
 
@@ -13,10 +14,12 @@ using namespace std;
 Optionals:
 -Included speak() function for Student
 -Added a little extra spice if a student picks up a bomb
+-Created new Teacher class
+-Made adjustments to trash.txt
 */
 int main()
 {
-   Dimension camp = {12, 10};
+   Dimension camp = {22, 10};
    Dimension build = {5, 4};
    Campus UTD(camp, build);
 
@@ -38,6 +41,10 @@ int main()
         }
         counter++;
     }
+    Teacher ProfessorDinkleberry = Teacher();
+    ProfessorDinkleberry.gradeProject(John);
+    ProfessorDinkleberry.gradeProject(Jane);
+
     if(John.getGrade() == Jane.getGrade())
     {
         cout<<"A tie! Both students have a grade of: "<< Jane.getGrade();

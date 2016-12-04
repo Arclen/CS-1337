@@ -3,7 +3,7 @@ sodaCan 5
 usedGum 4
 textbook 10
 flashDrive 7
-glass 6
+professorDinkleberrysEngagementRing 69
 pokemonCard 9
 bomb 0
 deadAnimal 9
