@@ -2,9 +2,9 @@
 sodaCan 5        
 usedGum 4
 textbook 10
-candyWrapper 1
+flashDrive 7
 glass 6
-key 8
+pokemonCard 9
 bomb 0
 deadAnimal 9
 pen 2
