@@ -1,8 +1,5 @@
 //Jacob Liou CS 1337
-/*
-Optionals:
--included speak() function
-*/
+
 using namespace std;
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
@@ -33,11 +30,10 @@ class Student: public Person{
             fname = "Bob";
             lname = "Doherty";
             iq = rand() % 20 + 50;
-            pos.pos_x = 0;
-            pos.pos_y = 0;
+            pos = {0,0};
             projectGraded = false;
 
-
+            //making sure there are no pre-existing trash objects
             for(int i=0; i<10; i++)
             {
                 pockets[i].removeTrash();
@@ -48,11 +44,11 @@ class Student: public Person{
         {
             fname = f;
             lname = l;
-            pos.pos_x = 0;
-            pos.pos_y = 0;
+            pos = {0,0};
             iq = q;
             projectGraded = false;
 
+            //making sure there are no pre-existing trash objects
             for(int i=0; i<10; i++)
             {
                 pockets[i].removeTrash();
@@ -62,12 +58,13 @@ class Student: public Person{
         void showProj()
         {
             cout<<"\n"<<fname<<"'s Project: ";
-            for(int i=0; i<11; i++)
+            for(int i=0; i<getNumTrash(); i++)
                 cout<<pockets[i].name<<" ";
             cout<<endl;
         }
         void go_to_campus(Campus& c)
         {
+            //ensuring student is placed in an empty cell
             bool emptySpace = false;
             if(pos.pos_x == 0 && pos.pos_y == 0)
                 while(!emptySpace)
@@ -82,7 +79,7 @@ class Student: public Person{
                         emptySpace = true;
                     }
                 }
-            else c.area[pos.pos_x][pos.pos_y];
+            else c.area[pos.pos_x][pos.pos_y] = 'S';
         }
 
         void setIQ(int i)
@@ -101,8 +98,10 @@ class Student: public Person{
         }
         void move(Campus& c)
         {
+            //all trash is gone
             if (c.numTrash() == 0)
             {
+                //student is inside the building
                 if(pos.pos_x < c.bdim.width && pos.pos_y < c.bdim.height)
                 {
                     c.area[pos.pos_x][pos.pos_y] = 'B';
@@ -127,7 +126,7 @@ class Student: public Person{
                         projectGraded = true;
                     }
                 }
-
+                //student is outside the building
                 else {
                     c.area[pos.pos_x][pos.pos_y] = ' ';
                     int diffX = pos.pos_x - c.bdim.width+1;
@@ -161,6 +160,7 @@ class Student: public Person{
                 if(c.area[c.bdim.width-1][c.bdim.height-1] == ' ')
                     c.area[c.bdim.width-1][c.bdim.height-1] = 'D';
             }
+            //trash is still on campus
             else
             {
                 c.area[pos.pos_x][pos.pos_y] = ' ';
@@ -263,21 +263,45 @@ class Student: public Person{
                         }
                         break;
                     }
-                if(c.area[pos.pos_x][pos.pos_y] == 'T')
+                //trash code!
+                if(c.getCell(pos) == 'T')
                 {
-                    int index = getNumTrash();
-                    pockets[index] = Trash();
-                    if(pockets[index].name == "bomb")
+                    //checking if pockets are full
+                    if(getNumTrash() < 10)
                     {
-                        iq -= 2;
-                        cout<<"!!!!!!\n!BOOM!\n!!!!!!\n"
-                            <<"Uh oh! Looks like "<<fname<<" picked up a bomb!\n\n";
-                        pockets[index].removeTrash();
+                        int index = getNumTrash();
+                        pockets[index] = Trash();
+                        if(pockets[index].name == "bomb")
+                        {
+                            iq -= 2;
+                            cout<<"!!!!!!\n!BOOM!\n!!!!!!\n"
+                                <<"Uh oh! Looks like "<<fname<<" picked up a bomb!\n\n";
+                            pockets[index].removeTrash();
+                        }
+                        else speak();
+                        c.trash--;
+                        c.area[pos.pos_x][pos.pos_y] = 'S';
+                        grade += pockets[index].value;
                     }
-                    else speak();
-                    c.trash--;
-                    c.area[pos.pos_x][pos.pos_y] = 'S';
-                    grade += pockets[index].value;
+                    //making sure least valuable item gets dropped
+                    else
+                    {
+                        int mindex = 0;
+                        for(int i=0; i<11; i++)
+                        {
+                            if(pockets[i].value < pockets[mindex].value)
+                            {
+                                mindex = i;
+                            }
+                        }
+                        Trash newTrash = Trash();
+                        if(pockets[mindex].value < newTrash.value)
+                        {
+                            pockets[mindex].removeTrash();
+                            pockets[mindex] = newTrash;
+                        }
+
+                    }
 
                 }
                 else if(c.area[pos.pos_x][pos.pos_y] == ' ')

@@ -25,9 +25,10 @@ class Campus{
 
         void buildCampus()
         {
-            int trashAmount = (int) floor(0.35 * (cdim.width*cdim.height - bdim.width*bdim.height));
+            int trashAmount = (int) floor(0.05 * (cdim.width*cdim.height - bdim.width*bdim.height));
             trash = trashAmount;
             bool filled = false;
+            //creating the building
             for(int i=0; i<cdim.width; i++)
              {
                 for(int j=0; j<cdim.height; j++)
@@ -39,6 +40,7 @@ class Campus{
                     else area[i][j] = ' ';
                 }
              }
+            //placing the faculty member
             bool isFac = false;
             while(!isFac)
             {
@@ -53,6 +55,7 @@ class Campus{
                     isFac = true;
                 }
             }
+            //placing trash
             while(!filled)
             {
                 int x=rand() % cdim.width;
@@ -70,11 +73,10 @@ class Campus{
     public:
         Campus(Dimension c, Dimension b)
         {
-                bdim.height=b.height;
-                bdim.width=b.width;
-                cdim.height=c.height;
-                cdim.width=c.width;
+                bdim = {b.width, b.height};
+                cdim = {c.width, c.height};
 
+                //initializing the whole campus to a space so no odd characters pop up
                 for(int i=0; i<25; i++)
                 {
                     for(int j=0; j<25; j++)
@@ -91,8 +93,15 @@ class Campus{
             return trash;
         }
 
+        char getCell(Position p)
+        {
+            return area[p.pos_x][p.pos_y];
+        }
 
-
+        void changeCell(Position p, char c)
+        {
+            area[p.pos_x][p.pos_y] = c;
+        }
 
         friend ostream& operator<<(ostream& os, const Campus &camp)
         {

@@ -9,13 +9,15 @@ using namespace std;
 #include <string>
 #include <stdlib.h>
 
+/*
+Optionals:
+-Included speak() function for Student
+-Added a little extra spice if a student picks up a bomb
+*/
 int main()
 {
-   Dimension camp, build;
-   camp.width=10;
-   build.width=5;
-   camp.height=8;
-   build.height=7;
+   Dimension camp = {12, 10};
+   Dimension build = {5, 4};
    Campus UTD(camp, build);
 
 
